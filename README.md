@@ -1,0 +1,1 @@
+Smart contract of the Exclusive Spirit Mandala project

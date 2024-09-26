@@ -1,0 +1,10 @@
+.env
+.gas-snapshot*
+lcov.info
+*.svg
+artefacts.md
+
+cache/
+version1/
+lib/
+out/
