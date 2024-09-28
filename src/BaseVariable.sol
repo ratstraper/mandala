@@ -32,11 +32,11 @@ contract BaseVariable is Initializable, OwnableUpgradeable {
     ISVGRenderer renderer;
 
     /// @dev URL of the collection.
-    string collectionURL = "https://mandala.garageno9.site";
+    string collectionURL;
 
     /// @notice Price for minting an NFT
-    uint256 public price = 0.01 ether;
+    uint256 public price;
 
     /// @notice Price for changing the name of an NFT
-    uint256 public priceToChangeName = 0.002 ether;
+    uint256 public priceToChangeName;
 }

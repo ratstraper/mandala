@@ -57,6 +57,9 @@ contract MandalaNFT is Discount, ERC721Upgradeable, ERC721EnumerableUpgradeable,
         __Ownable_init(initialOwner);
         __UUPSUpgradeable_init();
         renderer = ISVGRenderer(_renderer);
+        collectionURL = "https://mandala.garageno9.site";
+        price = 0.05 ether;
+        priceToChangeName = 0.01 ether;
     } 
 
     /**
@@ -119,7 +122,7 @@ contract MandalaNFT is Discount, ERC721Upgradeable, ERC721EnumerableUpgradeable,
         require(bytes(bday).length == 8, "Incorrect date of birth");
         require(bytes(name).length <= 20, "Name must be 20 characters max");
         uint256 tokenId;
-        for(uint256 a; a < 8; ++a) {
+        for(uint256 a; a < 8; a++) {
             uint8 c = uint8(bytes(bday)[a]);
             if(c < 0x30 || c > 0x39) revert IncorrectData(bday);
             tokenId *= 10;
@@ -186,12 +189,12 @@ contract MandalaNFT is Discount, ERC721Upgradeable, ERC721EnumerableUpgradeable,
         
         assembly {
             let ptr := add(buffer, 32)
-            let index := 7
+            let index := 8
             for { } gt(num, 0) { } {
                 let digit := mod(num, 10)
+                index := sub(index, 1)
                 mstore8(add(ptr, index), add(digit, 48))
                 num := div(num, 10)
-                index := sub(index, 1)
                 if iszero(index) { break }
             }
         }

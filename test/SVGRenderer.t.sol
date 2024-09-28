@@ -128,11 +128,19 @@ contract SVGRendererTest is Test, IERC721Receiver {
         console.log("balance", nft.totalSupply(), address(nft).balance);
         console.log("user1 ", user1.balance);   
 
-        nft.tokenURI(1101990);
-        nft.tokenURI(20202990);
-        nft.tokenURI(30303990);
+        // nft.tokenURI(1101990);
+        // nft.tokenURI(20202990);
+        // nft.tokenURI(30303990);
     }
 
+    function testSvgRenderer_3() public {
+        uint256 price = nft.price();
+        nft.mint{value: price}("29082010", "Fly", "");
+        (uint256 index, uint256 tokenId, string memory name) = nft.fullTokenOfOwnerByIndex(owner, 0);
+        console.log(index, tokenId, name);
+        string memory svg = nft.tokenURI(29082010);
+        console.log(svg);
+    }
 
     function onERC721Received(address, address, uint256, bytes calldata) external override pure returns (bytes4) {
         return this.onERC721Received.selector;
