@@ -18,7 +18,7 @@ contract SVGRenderer {
     uint256 constant COS_CELL_SIZE = CELL_SIZE * 5 / 10;
     uint256 constant SIN_CELL_SIZE = CELL_SIZE * 86_602_540_378 / 100_000_000_000;
 
-    function mandala(bytes memory bday, bytes memory name) public view returns (string memory) {
+    function mandala(bytes memory bday, bytes memory name, uint256 reserv) public view returns (string memory) {
         require(bday.length == 8);
         require(name.length <= 20);
 

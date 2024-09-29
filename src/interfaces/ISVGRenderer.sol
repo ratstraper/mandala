@@ -6,5 +6,5 @@ interface ISVGRenderer {
     /**
      * @dev Returns the mandala token.
      */
-    function mandala(bytes memory, bytes memory) external view returns (string memory);
+    function mandala(bytes memory, bytes memory, uint256 reserv) external view returns (string memory);
 }

@@ -174,7 +174,8 @@ contract MandalaNFT is Discount, ERC721Upgradeable, ERC721EnumerableUpgradeable,
      */
     function tokenURI(uint256 tokenId) public view override returns (string memory) {
         _requireOwned(tokenId);
-        return renderer.mandala(uint32ToBytes(uint32(tokenId)), bytes(userdata[tokenId].name));
+        NFT storage token = userdata[tokenId];
+        return renderer.mandala(uint32ToBytes(uint32(tokenId)), bytes(token.name), token.reserv);
     }
 
     /**
