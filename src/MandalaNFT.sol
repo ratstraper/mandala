@@ -58,8 +58,8 @@ contract MandalaNFT is Discount, ERC721Upgradeable, ERC721EnumerableUpgradeable,
         __UUPSUpgradeable_init();
         renderer = ISVGRenderer(_renderer);
         collectionURL = "https://mandala.garageno9.site";
-        price = 0.05 ether;
-        priceToChangeName = 0.01 ether;
+        price = 0.01 ether;
+        priceToChangeName = 0.002 ether;
     } 
 
     /**

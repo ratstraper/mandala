@@ -138,10 +138,30 @@ contract SVGRendererTest is Test, IERC721Receiver {
         nft.mint{value: price}("29082010", "Fly", "");
         (uint256 index, uint256 tokenId, string memory name) = nft.fullTokenOfOwnerByIndex(owner, 0);
         console.log(index, tokenId, name);
-        string memory svg = nft.tokenURI(29082010);
-        console.log(svg);
+        // string memory svg = nft.tokenURI(29082010);
+        // console.log(svg);
     }
 
+function testSvgRenderer_4() public {
+        string[] memory arr = new string[](5); 
+        arr[0] = "Ds#e-A9bZ-6n";
+        arr[1] = "cxC5-Qv9u";
+        arr[2] = "ePgd-Y59W-a";
+        arr[3] = "a#HT-ePm@-P";
+        arr[4] = "LuG#-9GnC-sc";
+        bytes32[] memory hashes = new bytes32[](5);
+        hashes[0] = 0x2d30ead52c63c6ae5b444bfcb4b5da756f0cdef911914332a4750280fd6189db;
+        hashes[1] = 0xf7e66075a3388b8f89eb5be8f853fb6c2d2c9c5f6b0273aed468348c874e264b;
+        hashes[2] = 0x21b10cfaa8c461cc0c5d7b5113c5219fcf646fccf3316af1de566ae0aa759669;
+        hashes[3] = 0xa2983c74b7d4053595c6f05be0a20eab4292b8ca651204c4141ee26c61eeab03;
+        hashes[4] = 0x33628563201d1d0bace44d812ea48a50b25077388b7ee4de05fda67274fb6fff;
+        
+        for(uint i = 0; i < 5; i++) {
+            bytes32 hash = keccak256(abi.encodePacked(arr[i]));
+            vm.assertEq(hash, hashes[i]);
+        }
+        
+    }
     function onERC721Received(address, address, uint256, bytes calldata) external override pure returns (bytes4) {
         return this.onERC721Received.selector;
     }
